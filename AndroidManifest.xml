@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.NightmareApps.NyanCatLive"
     android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionName="0.5" >
 
     <uses-sdk android:minSdkVersion="7" />
 
@@ -23,6 +23,22 @@
                 android:name="android.service.wallpaper"
                 android:resource="@layout/main" />
         </service>
+        <activity android:name="MainActivity"
+			android:label="@string/app_name"
+			android:icon="@drawable/ic_launcher"
+			android:screenOrientation="portrait">
+			<intent-filter>
+            	<action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+       </activity>
+       <activity android:name="Settings"
+			android:label="@string/settings_activity"
+			android:icon="@drawable/ic_launcher"
+			android:configChanges="orientation|keyboard|keyboardHidden"
+			android:excludeFromRecents="true"
+			android:exported="true">
+       </activity>
     </application>
 
 </manifest>
