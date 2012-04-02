@@ -32,7 +32,7 @@
     <string name="app_description">Watch Nyan Cat race across your screen, featuring the most famous and unique Nyan Cat themes!</string>
     <string name="settings_activity">Nyan Cat Live settings</string>
     <string name="about_activity">About Nyan Cat Live</string>
-    <string name="wallpaper_label">Nyan Cat Live Wallpaper</string>
+    <string name="wallpaper_label">Nyan Cat Live</string>
     <string name="choose_theme">Choose Nyan Cat\'s Theme:</string>
     <string name="choose_speed">Choose Nyan Cat\'s Speed:</string>
     <string name="copyright">Copyright \u00A9 NightmareApps 2011</string>
