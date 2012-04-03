@@ -21,10 +21,19 @@
         <item>Nyan Cat</item>
         <item>Nyan Skrat</item>
     </string-array>
+    <string-array name="themes_values">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
     <string-array name="speed_array">
-        <item>Normal</item>
         <item>Slow</item>
+        <item>Normal</item>
         <item>Fast</item>
+    </string-array>
+    <string-array name="speed_values">
+        <item>200</item>
+        <item>100</item>
+        <item>50</item>
     </string-array>
 
     <string name="app_name">Nyan Cat Live</string>

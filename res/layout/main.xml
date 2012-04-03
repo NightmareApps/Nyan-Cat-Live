@@ -1,6 +1,4 @@
 <wallpaper xmlns:android="http://schemas.android.com/apk/res/android"
     android:description="@string/app_description"
-	android:thumbnail="@drawable/ic_launcher"
-/>
-
-<!-- 	android:settingsActivity="com.NightmareApps.NyanCatLive.Settings" -->
+    android:settingsActivity="com.NightmareApps.NyanCatLive.Settings"
+    android:thumbnail="@drawable/ic_launcher" />

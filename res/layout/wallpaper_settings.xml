@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory
+        android:key="first_category"
+        android:title="Nyan Cat&apos;s Theme" >
+
+        <ListPreference
+            android:defaultValue="0"
+            android:entries="@array/themes_array"
+            android:entryValues="@array/themes_values"
+            android:key="theme_key"
+            android:summary="Select Nyan Cat&apos;s Theme"
+            android:title="Theme" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="second_category"
+        android:title="Nyan Cat's Speed" >
+
+        <ListPreference
+            android:defaultValue="1"
+            android:entries="@array/speed_array"
+            android:entryValues="@array/speed_values"
+            android:key="speed_key"
+            android:summary="Select Nyan Cat&apos;s Speed"
+            android:title="Speed" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="third_category"
+        android:title="Background Strobe Mode" >
+
+        <CheckBoxPreference
+            android:key="strobe_key"
+            android:title="Strobe"
+            android:defaultValue="true" />
+        
+    </PreferenceCategory>
+    
+</PreferenceScreen>

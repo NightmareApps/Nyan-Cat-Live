@@ -1,5 +1,8 @@
 package com.NightmareApps.NyanCatLive;
 
+import java.util.ArrayList;
+
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -15,8 +18,13 @@ import android.view.WindowManager;
 
 public class Engine extends WallpaperService {
 
+	// Default Pref Variables
+	public static int INTERVAL = 100;
+	public static int THEME = 1;
+	public static boolean STROBE = false;
+
 	private final Handler mHandler = new Handler();
-	
+
 	@Override
 	public void onCreate() {
 		super.onCreate();
@@ -46,17 +54,18 @@ public class Engine extends WallpaperService {
 				drawFrame();
 			}
 		};
-		
+
 		private boolean mVisible;
 		private int indexnumber;
 		private Bitmap frame;
-		public Bitmap frame0, frame1, frame2, frame3, frame4, frame5, frame6, frame7, frame8, frame9, frame10, frame11;
-//		public Bitmap mframe0, mframe1, mframe2, mframe3, mframe4, mframe5, mframe6, mframe7, mframe8, mframe9, mframe10, mframe11;
+		public Bitmap frame0, frame1, frame2, frame3, frame4, frame5, frame6,
+				frame7, frame8, frame9, frame10, frame11;
+		ArrayList<Bitmap> frameArray = new ArrayList<Bitmap>();
 		private int backgroundColor;
-		public int INTERVAL = 100;
 		public static final int FAST = 50;
 		public static final int SLOW = 200;
 		public static final int NORMAL = 100;
+
 		RenderEngine() {
 			// Create a Paint to draw the lines for our cube
 			final Paint paint = mPaint;
@@ -75,44 +84,94 @@ public class Engine extends WallpaperService {
 
 			// By default we don't get touch events, so enable them.
 			setTouchEventsEnabled(true);
-			
-			DisplayMetrics metrics = new DisplayMetrics();  
-            Display display = ((WindowManager) getSystemService(WINDOW_SERVICE)).getDefaultDisplay();  
-            display.getMetrics(metrics);  
-			
-			
-			
-			frame0 = BitmapFactory.decodeResource(getResources(), R.drawable.nyanskrat0);
-			
-			int minWidth = display.getWidth();
-			float ratioHeight = (float) minWidth / (float) frame0.getWidth();
-			System.out.println((int) (ratioHeight * frame0.getHeight()));
-			int minHeight = (int) (ratioHeight * frame0.getHeight());
 
-			frame0 = Bitmap.createScaledBitmap(frame0, minWidth, minHeight, true);
-	        frame1 = BitmapFactory.decodeResource(getResources(), R.drawable.nyanskrat1);
-			frame1 = Bitmap.createScaledBitmap(frame1, minWidth, minHeight, true);
-	        frame2 = BitmapFactory.decodeResource(getResources(), R.drawable.nyanskrat2);
-			frame2 = Bitmap.createScaledBitmap(frame2, minWidth, minHeight, true);
-	        frame3 = BitmapFactory.decodeResource(getResources(), R.drawable.nyanskrat3);
-			frame3 = Bitmap.createScaledBitmap(frame3, minWidth, minHeight, true);
-	        frame4 = BitmapFactory.decodeResource(getResources(), R.drawable.nyanskrat4);
-			frame4 = Bitmap.createScaledBitmap(frame4, minWidth, minHeight, true);
-	        frame5 = BitmapFactory.decodeResource(getResources(), R.drawable.nyanskrat5);
-			frame5 = Bitmap.createScaledBitmap(frame5, minWidth, minHeight, true);
-	        frame6 = BitmapFactory.decodeResource(getResources(), R.drawable.nyanskrat6);
-			frame6 = Bitmap.createScaledBitmap(frame6, minWidth, minHeight, true);
-	        frame7 = BitmapFactory.decodeResource(getResources(), R.drawable.nyanskrat7);
-			frame7 = Bitmap.createScaledBitmap(frame7, minWidth, minHeight, true);
-	        frame8 = BitmapFactory.decodeResource(getResources(), R.drawable.nyanskrat8);
-			frame8 = Bitmap.createScaledBitmap(frame8, minWidth, minHeight, true);
-	        frame9 = BitmapFactory.decodeResource(getResources(), R.drawable.nyanskrat9);
-			frame9 = Bitmap.createScaledBitmap(frame9, minWidth, minHeight, true);
-	        frame10 = BitmapFactory.decodeResource(getResources(), R.drawable.nyanskrat10);
-			frame10 = Bitmap.createScaledBitmap(frame10, minWidth, minHeight, true);
-	        frame11 = BitmapFactory.decodeResource(getResources(), R.drawable.nyanskrat11);
-			frame11 = Bitmap.createScaledBitmap(frame11, minWidth, minHeight, true);
-			backgroundColor = frame0.getPixel(1, 1);
+			// //
+			DisplayMetrics metrics = new DisplayMetrics();
+			Display display = ((WindowManager) getSystemService(WINDOW_SERVICE))
+					.getDefaultDisplay();
+			display.getMetrics(metrics);
+
+//			if (THEME == 1) {
+
+				frame0 = BitmapFactory.decodeResource(getResources(),
+						R.drawable.nyanskrat0);
+
+				int minWidth = display.getWidth();
+				float ratioHeight = (float) minWidth / (float) frame0.getWidth();
+				System.out.println((int) (ratioHeight * frame0.getHeight()));
+				int minHeight = (int) (ratioHeight * frame0.getHeight());
+				
+				frame0 = Bitmap.createScaledBitmap(frame0, minWidth, minHeight,
+						true);
+				frameArray.add(frame0);
+				frame1 = BitmapFactory.decodeResource(getResources(),
+						R.drawable.nyanskrat1);
+				frame1 = Bitmap.createScaledBitmap(frame1, minWidth, minHeight,
+						true);
+				frameArray.add(frame1);
+
+				frame2 = BitmapFactory.decodeResource(getResources(),
+						R.drawable.nyanskrat2);
+				frame2 = Bitmap.createScaledBitmap(frame2, minWidth, minHeight,
+						true);
+				frameArray.add(frame2);
+
+				frame3 = BitmapFactory.decodeResource(getResources(),
+						R.drawable.nyanskrat3);
+				frame3 = Bitmap.createScaledBitmap(frame3, minWidth, minHeight,
+						true);
+				frameArray.add(frame3);
+
+				frame4 = BitmapFactory.decodeResource(getResources(),
+						R.drawable.nyanskrat4);
+				frame4 = Bitmap.createScaledBitmap(frame4, minWidth, minHeight,
+						true);
+				frameArray.add(frame4);
+
+				frame5 = BitmapFactory.decodeResource(getResources(),
+						R.drawable.nyanskrat5);
+				frame5 = Bitmap.createScaledBitmap(frame5, minWidth, minHeight,
+						true);
+				frameArray.add(frame5);
+
+				frame6 = BitmapFactory.decodeResource(getResources(),
+						R.drawable.nyanskrat6);
+				frame6 = Bitmap.createScaledBitmap(frame6, minWidth, minHeight,
+						true);
+				frameArray.add(frame6);
+
+				frame7 = BitmapFactory.decodeResource(getResources(),
+						R.drawable.nyanskrat7);
+				frame7 = Bitmap.createScaledBitmap(frame7, minWidth, minHeight,
+						true);
+				frameArray.add(frame7);
+
+				frame8 = BitmapFactory.decodeResource(getResources(),
+						R.drawable.nyanskrat8);
+				frame8 = Bitmap.createScaledBitmap(frame8, minWidth, minHeight,
+						true);
+				frameArray.add(frame8);
+
+				frame9 = BitmapFactory.decodeResource(getResources(),
+						R.drawable.nyanskrat9);
+				frame9 = Bitmap.createScaledBitmap(frame9, minWidth, minHeight,
+						true);
+				frameArray.add(frame9);
+
+				frame10 = BitmapFactory.decodeResource(getResources(),
+						R.drawable.nyanskrat10);
+				frame10 = Bitmap.createScaledBitmap(frame10, minWidth,
+						minHeight, true);
+				frameArray.add(frame10);
+				frame11 = BitmapFactory.decodeResource(getResources(),
+						R.drawable.nyanskrat11);
+				frame11 = Bitmap.createScaledBitmap(frame11, minWidth,
+						minHeight, true);
+
+				frameArray.add(frame11);
+
+				backgroundColor = frame0.getPixel(1, 1);
+//			}
 		}
 
 		@Override
@@ -137,8 +196,8 @@ public class Engine extends WallpaperService {
 			super.onSurfaceChanged(holder, format, width, height);
 			// store the center of the surface, so we can draw the cube in the
 			// right spot
-//			mCenterX = width / 2.0f;
-//			mCenterY = height / 2.0f;
+			// mCenterX = width / 2.0f;
+			// mCenterY = height / 2.0f;
 			drawFrame();
 		}
 
@@ -177,6 +236,12 @@ public class Engine extends WallpaperService {
 			super.onTouchEvent(event);
 		}
 
+		public void onSharedPreferenceChanged(SharedPreferences prefs,
+				String key) {
+			INTERVAL = prefs.getInt("speed_key", NORMAL);
+			System.out.print("Changed" + INTERVAL);
+		}
+
 		/*
 		 * Draw one frame of the animation. This method gets called repeatedly
 		 * by posting a delayed Runnable. You can do any drawing you want in
@@ -201,7 +266,7 @@ public class Engine extends WallpaperService {
 			// Reschedule the next redraw
 			mHandler.removeCallbacks(mDrawWallpaper);
 			if (mVisible) {
-				mHandler.postDelayed(mDrawWallpaper, FAST);
+				mHandler.postDelayed(mDrawWallpaper, INTERVAL);
 			}
 		}
 
@@ -239,10 +304,10 @@ public class Engine extends WallpaperService {
 			c.drawBitmap(frame, 0, 0, mPaint);
 			c.restore();
 			if (indexnumber == 11) {
-	    		indexnumber = 0;
-	    	} else {
-	        	indexnumber++;
-	    	}
+				indexnumber = 0;
+			} else {
+				indexnumber++;
+			}
 		}
 
 		/*

@@ -23,22 +23,28 @@
                 android:name="android.service.wallpaper"
                 android:resource="@layout/main" />
         </service>
-        <activity android:name="MainActivity"
-			android:label="@string/app_name"
-			android:icon="@drawable/ic_launcher"
-			android:screenOrientation="portrait">
-			<intent-filter>
-            	<action android:name="android.intent.action.MAIN" />
+
+        <activity
+            android:name="MainActivity"
+            android:icon="@drawable/ic_launcher"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-       </activity>
-       <activity android:name="Settings"
-			android:label="@string/settings_activity"
-			android:icon="@drawable/ic_launcher"
-			android:configChanges="orientation|keyboard|keyboardHidden"
-			android:excludeFromRecents="true"
-			android:exported="true">
-       </activity>
+        </activity>
+        <activity
+            android:name="Settings"
+            android:configChanges="orientation|keyboard|keyboardHidden"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:icon="@drawable/ic_launcher"
+            android:label="@string/settings_activity"
+            android:theme="@android:style/Theme.Light.WallpaperSettings" >
+        </activity>
+        <activity android:name=".ShowSettingsActivity" />
     </application>
 
 </manifest>
