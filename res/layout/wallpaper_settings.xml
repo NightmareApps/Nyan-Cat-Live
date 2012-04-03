@@ -16,7 +16,7 @@
 
     <PreferenceCategory
         android:key="second_category"
-        android:title="Nyan Cat's Speed" >
+        android:title="Nyan Cat&apos;s Speed" >
 
         <ListPreference
             android:defaultValue="1"
@@ -32,10 +32,9 @@
         android:title="Background Strobe Mode" >
 
         <CheckBoxPreference
+            android:defaultValue="true"
             android:key="strobe_key"
-            android:title="Strobe"
-            android:defaultValue="true" />
-        
+            android:title="Strobe" />
     </PreferenceCategory>
-    
+
 </PreferenceScreen>

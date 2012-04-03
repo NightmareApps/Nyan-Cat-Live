@@ -10,8 +10,6 @@
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
@@ -21,19 +19,21 @@
         <item>Nyan Cat</item>
         <item>Nyan Skrat</item>
     </string-array>
+
     <string-array name="themes_values">
-        <item>1</item>
-        <item>2</item>
+        <item>nyan_cat</item>
+        <item>nyan_skrat</item>
     </string-array>
+
     <string-array name="speed_array">
         <item>Slow</item>
         <item>Normal</item>
         <item>Fast</item>
     </string-array>
     <string-array name="speed_values">
-        <item>200</item>
-        <item>100</item>
-        <item>50</item>
+        <item>slow</item>
+        <item>normal</item>
+        <item>fast</item>
     </string-array>
 
     <string name="app_name">Nyan Cat Live</string>

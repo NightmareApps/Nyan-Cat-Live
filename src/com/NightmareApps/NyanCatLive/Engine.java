@@ -18,10 +18,7 @@ import android.view.WindowManager;
 
 public class Engine extends WallpaperService {
 
-	// Default Pref Variables
-	public static int INTERVAL = 100;
-	public static int THEME = 1;
-	public static boolean STROBE = false;
+	public static final String SHARED_PREFS_NAME = "settings";
 
 	private final Handler mHandler = new Handler();
 
@@ -40,7 +37,8 @@ public class Engine extends WallpaperService {
 		return new RenderEngine();
 	}
 
-	class RenderEngine extends Engine {
+	class RenderEngine extends Engine implements
+			SharedPreferences.OnSharedPreferenceChangeListener {
 		private final Paint mPaint = new Paint();
 		private float mOffset;
 		private float mTouchX = -1;
@@ -56,7 +54,7 @@ public class Engine extends WallpaperService {
 		};
 
 		private boolean mVisible;
-		private int indexnumber;
+		private int indexnumber = 0;
 		private Bitmap frame;
 		public Bitmap frame0, frame1, frame2, frame3, frame4, frame5, frame6,
 				frame7, frame8, frame9, frame10, frame11;
@@ -65,6 +63,14 @@ public class Engine extends WallpaperService {
 		public static final int FAST = 50;
 		public static final int SLOW = 200;
 		public static final int NORMAL = 100;
+		public Display display;
+		private SharedPreferences mPrefs;
+
+		// Default Pref Variables
+		public String stringINTERVAL = "normal";
+		public int INTERVAL = 100;
+		public String THEME = "nyan_cat";
+		public boolean STROBE = false;
 
 		RenderEngine() {
 			// Create a Paint to draw the lines for our cube
@@ -74,6 +80,9 @@ public class Engine extends WallpaperService {
 			paint.setStrokeWidth(2);
 			paint.setStrokeCap(Paint.Cap.ROUND);
 			paint.setStyle(Paint.Style.STROKE);
+			mPrefs = getSharedPreferences(SHARED_PREFS_NAME, 0);
+			mPrefs.registerOnSharedPreferenceChangeListener(this);
+			onSharedPreferenceChanged(mPrefs, null);
 
 			mStartTime = SystemClock.elapsedRealtime();
 		}
@@ -87,20 +96,109 @@ public class Engine extends WallpaperService {
 
 			// //
 			DisplayMetrics metrics = new DisplayMetrics();
-			Display display = ((WindowManager) getSystemService(WINDOW_SERVICE))
+			display = ((WindowManager) getSystemService(WINDOW_SERVICE))
 					.getDefaultDisplay();
 			display.getMetrics(metrics);
 
-//			if (THEME == 1) {
+			// TODO if (Theme==1) check and init
+
+			loadFrames();
+
+		}
+
+		public void loadFrames() {
+			if (THEME == "nyan_cat") {
+
+				frame0 = BitmapFactory.decodeResource(getResources(),
+						R.drawable.nyancat0);
+
+				int minWidth = display.getWidth();
+				float ratioHeight = (float) minWidth
+						/ (float) frame0.getWidth();
+				System.out.println((int) (ratioHeight * frame0.getHeight()));
+				int minHeight = (int) (ratioHeight * frame0.getHeight());
+
+				frame0 = Bitmap.createScaledBitmap(frame0, minWidth, minHeight,
+						true);
+				frameArray.add(frame0);
+				frame1 = BitmapFactory.decodeResource(getResources(),
+						R.drawable.nyancat1);
+				frame1 = Bitmap.createScaledBitmap(frame1, minWidth, minHeight,
+						true);
+				frameArray.add(frame1);
+
+				frame2 = BitmapFactory.decodeResource(getResources(),
+						R.drawable.nyancat2);
+				frame2 = Bitmap.createScaledBitmap(frame2, minWidth, minHeight,
+						true);
+				frameArray.add(frame2);
+
+				frame3 = BitmapFactory.decodeResource(getResources(),
+						R.drawable.nyancat3);
+				frame3 = Bitmap.createScaledBitmap(frame3, minWidth, minHeight,
+						true);
+				frameArray.add(frame3);
+
+				frame4 = BitmapFactory.decodeResource(getResources(),
+						R.drawable.nyancat4);
+				frame4 = Bitmap.createScaledBitmap(frame4, minWidth, minHeight,
+						true);
+				frameArray.add(frame4);
+
+				frame5 = BitmapFactory.decodeResource(getResources(),
+						R.drawable.nyancat5);
+				frame5 = Bitmap.createScaledBitmap(frame5, minWidth, minHeight,
+						true);
+				frameArray.add(frame5);
+
+				frame6 = BitmapFactory.decodeResource(getResources(),
+						R.drawable.nyancat6);
+				frame6 = Bitmap.createScaledBitmap(frame6, minWidth, minHeight,
+						true);
+				frameArray.add(frame6);
+
+				frame7 = BitmapFactory.decodeResource(getResources(),
+						R.drawable.nyancat7);
+				frame7 = Bitmap.createScaledBitmap(frame7, minWidth, minHeight,
+						true);
+				frameArray.add(frame7);
+
+				frame8 = BitmapFactory.decodeResource(getResources(),
+						R.drawable.nyancat8);
+				frame8 = Bitmap.createScaledBitmap(frame8, minWidth, minHeight,
+						true);
+				frameArray.add(frame8);
+
+				frame9 = BitmapFactory.decodeResource(getResources(),
+						R.drawable.nyancat9);
+				frame9 = Bitmap.createScaledBitmap(frame9, minWidth, minHeight,
+						true);
+				frameArray.add(frame9);
+
+				frame10 = BitmapFactory.decodeResource(getResources(),
+						R.drawable.nyancat10);
+				frame10 = Bitmap.createScaledBitmap(frame10, minWidth,
+						minHeight, true);
+				frameArray.add(frame10);
+				frame11 = BitmapFactory.decodeResource(getResources(),
+						R.drawable.nyancat11);
+				frame11 = Bitmap.createScaledBitmap(frame11, minWidth,
+						minHeight, true);
+
+				frameArray.add(frame11);
+
+				backgroundColor = frame0.getPixel(1, 1);
+			} else if (THEME == "nyan_skrat") {
 
 				frame0 = BitmapFactory.decodeResource(getResources(),
 						R.drawable.nyanskrat0);
 
 				int minWidth = display.getWidth();
-				float ratioHeight = (float) minWidth / (float) frame0.getWidth();
+				float ratioHeight = (float) minWidth
+						/ (float) frame0.getWidth();
 				System.out.println((int) (ratioHeight * frame0.getHeight()));
 				int minHeight = (int) (ratioHeight * frame0.getHeight());
-				
+
 				frame0 = Bitmap.createScaledBitmap(frame0, minWidth, minHeight,
 						true);
 				frameArray.add(frame0);
@@ -171,7 +269,7 @@ public class Engine extends WallpaperService {
 				frameArray.add(frame11);
 
 				backgroundColor = frame0.getPixel(1, 1);
-//			}
+			}
 		}
 
 		@Override
@@ -238,10 +336,22 @@ public class Engine extends WallpaperService {
 
 		public void onSharedPreferenceChanged(SharedPreferences prefs,
 				String key) {
-			INTERVAL = prefs.getInt("speed_key", NORMAL);
-			System.out.print("Changed" + INTERVAL);
+			stringINTERVAL = prefs.getString("speed_key", "normal");
+			if (stringINTERVAL == "normal") {
+				INTERVAL = NORMAL;
+			} else if (stringINTERVAL == "slow") {
+					INTERVAL = SLOW;
+			} else if (stringINTERVAL == "fast") {
+				INTERVAL = FAST;
+			}
+			System.out.println("Interval Speed: " + INTERVAL + " aka: " + stringINTERVAL);
+//			THEME = prefs.getString("theme_key", "nyan_cat");
+			System.out.println("Theme: " + THEME);
+			STROBE = prefs.getBoolean("strobe_key", false);
+			System.out.println("Strobe: " + STROBE);
+//			 loadFrames();
 		}
-
+//		  + prefs.getInt("theme_key", 1)
 		/*
 		 * Draw one frame of the animation. This method gets called repeatedly
 		 * by posting a delayed Runnable. You can do any drawing you want in
@@ -269,45 +379,28 @@ public class Engine extends WallpaperService {
 				mHandler.postDelayed(mDrawWallpaper, INTERVAL);
 			}
 		}
-
+//
 		void drawImage(Canvas c) {
 			c.save();
 			c.translate(mCenterX, mCenterY);
-			c.drawColor(backgroundColor);
-			// TODO
-			if (indexnumber == 0) {
-				frame = frame0;
-			} else if (indexnumber == 1) {
-				frame = frame1;
-			} else if (indexnumber == 2) {
-				frame = frame2;
-			} else if (indexnumber == 3) {
-				frame = frame3;
-			} else if (indexnumber == 4) {
-				frame = frame4;
-			} else if (indexnumber == 5) {
-				frame = frame5;
-			} else if (indexnumber == 6) {
-				frame = frame6;
-			} else if (indexnumber == 7) {
-				frame = frame7;
-			} else if (indexnumber == 8) {
-				frame = frame8;
-			} else if (indexnumber == 9) {
-				frame = frame9;
-			} else if (indexnumber == 10) {
-				frame = frame10;
-			} else if (indexnumber == 11) {
-				frame = frame11;
+			if (!STROBE) {
+				c.drawColor(backgroundColor);
 			}
 			c.translate(0, 250);
-			c.drawBitmap(frame, 0, 0, mPaint);
-			c.restore();
-			if (indexnumber == 11) {
-				indexnumber = 0;
-			} else {
-				indexnumber++;
+			if (frameArray.size() > 0) {
+			c.drawBitmap(frameArray.get(indexnumber), 0, 0, mPaint);
 			}
+			c.restore();
+			if (indexnumber < frameArray.size() - 1) {
+				indexnumber++;
+			} else {
+				indexnumber = 0;
+			}
+			// if (indexnumber == 11) {
+			// indexnumber = 0;
+			// } else {
+			// indexnumber++;
+			// }
 		}
 
 		/*
