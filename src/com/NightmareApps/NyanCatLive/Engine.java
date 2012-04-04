@@ -1,6 +1,7 @@
 package com.NightmareApps.NyanCatLive;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -8,6 +9,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.service.wallpaper.WallpaperService;
@@ -71,6 +73,7 @@ public class Engine extends WallpaperService {
 		public int INTERVAL = 100;
 		public String THEME = "nyan_cat";
 		public boolean STROBE = false;
+		public Random random;
 
 		RenderEngine() {
 			// Create a Paint to draw the lines for our cube
@@ -83,6 +86,7 @@ public class Engine extends WallpaperService {
 			mPrefs = getSharedPreferences(SHARED_PREFS_NAME, 0);
 			mPrefs.registerOnSharedPreferenceChangeListener(this);
 			onSharedPreferenceChanged(mPrefs, null);
+			random = new Random();
 
 			mStartTime = SystemClock.elapsedRealtime();
 		}
@@ -269,7 +273,7 @@ public class Engine extends WallpaperService {
 						minHeight, true);
 
 				frameArray.add(frame11);
-				//Printed value from frame0.getPixel(1,1);
+				// Printed value from frame0.getPixel(1,1);
 				backgroundColor = -13421773;
 			}
 		}
@@ -371,7 +375,7 @@ public class Engine extends WallpaperService {
 				if (c != null) {
 					// draw something
 					drawImage(c);
-					drawTouchPoint(c);
+//					drawTouchPoint(c);
 				}
 			} finally {
 				if (c != null)
@@ -387,11 +391,15 @@ public class Engine extends WallpaperService {
 
 		//
 		void drawImage(Canvas c) {
+			c.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
 			c.save();
 			c.translate(mCenterX, mCenterY);
-			// if (!STROBE) {
-			c.drawColor(backgroundColor);
-			// }
+			if (STROBE) {
+				backgroundColor = random.nextInt();
+				c.drawColor(backgroundColor);
+			} else {
+				c.drawColor(backgroundColor);
+			}
 			c.translate(0, (c.getHeight() / 2) - frame0.getHeight() / 2);
 			if (frameArray.size() > 0) {
 				c.drawBitmap(frameArray.get(indexnumber), 0, 0, mPaint);
