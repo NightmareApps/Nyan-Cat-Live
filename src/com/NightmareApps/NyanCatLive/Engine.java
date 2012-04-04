@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Handler;
 import android.os.SystemClock;
@@ -55,7 +56,6 @@ public class Engine extends WallpaperService {
 
 		private boolean mVisible;
 		private int indexnumber = 0;
-		private Bitmap frame;
 		public Bitmap frame0, frame1, frame2, frame3, frame4, frame5, frame6,
 				frame7, frame8, frame9, frame10, frame11;
 		ArrayList<Bitmap> frameArray = new ArrayList<Bitmap>();
@@ -107,8 +107,10 @@ public class Engine extends WallpaperService {
 		}
 
 		public void loadFrames() {
-			if (THEME == "nyan_cat") {
-
+			if (!frameArray.isEmpty()) {
+				frameArray.clear();
+			}
+			if (THEME.contains("nyan_cat")) {
 				frame0 = BitmapFactory.decodeResource(getResources(),
 						R.drawable.nyancat0);
 
@@ -187,8 +189,8 @@ public class Engine extends WallpaperService {
 
 				frameArray.add(frame11);
 
-				backgroundColor = frame0.getPixel(1, 1);
-			} else if (THEME == "nyan_skrat") {
+				backgroundColor = -16764058;
+			} else if (THEME.contains("nyan_skrat")) {
 
 				frame0 = BitmapFactory.decodeResource(getResources(),
 						R.drawable.nyanskrat0);
@@ -267,8 +269,8 @@ public class Engine extends WallpaperService {
 						minHeight, true);
 
 				frameArray.add(frame11);
-
-				backgroundColor = frame0.getPixel(1, 1);
+				//Printed value from frame0.getPixel(1,1);
+				backgroundColor = -13421773;
 			}
 		}
 
@@ -337,25 +339,28 @@ public class Engine extends WallpaperService {
 		public void onSharedPreferenceChanged(SharedPreferences prefs,
 				String key) {
 			stringINTERVAL = prefs.getString("speed_key", "normal");
-			if (stringINTERVAL == "normal") {
+			if (stringINTERVAL.contains("normal")) {
 				INTERVAL = NORMAL;
-			} else if (stringINTERVAL == "slow") {
-					INTERVAL = SLOW;
-			} else if (stringINTERVAL == "fast") {
+			} else if (stringINTERVAL.contains("slow")) {
+				INTERVAL = SLOW;
+			} else if (stringINTERVAL.contains("fast")) {
 				INTERVAL = FAST;
 			}
-			System.out.println("Interval Speed: " + INTERVAL + " aka: " + stringINTERVAL);
-//			THEME = prefs.getString("theme_key", "nyan_cat");
+			System.out.println("Interval Speed: " + INTERVAL + " aka: "
+					+ stringINTERVAL);
+			THEME = prefs.getString("theme_key", "nyan_cat");
 			System.out.println("Theme: " + THEME);
 			STROBE = prefs.getBoolean("strobe_key", false);
 			System.out.println("Strobe: " + STROBE);
-//			 loadFrames();
+			if (frame0 != null) {
+				loadFrames();
+			}
 		}
-//		  + prefs.getInt("theme_key", 1)
+
 		/*
 		 * Draw one frame of the animation. This method gets called repeatedly
 		 * by posting a delayed Runnable. You can do any drawing you want in
-		 * here. This example draws a wireframe cube.
+		 * here.
 		 */
 		void drawFrame() {
 			final SurfaceHolder holder = getSurfaceHolder();
@@ -379,16 +384,17 @@ public class Engine extends WallpaperService {
 				mHandler.postDelayed(mDrawWallpaper, INTERVAL);
 			}
 		}
-//
+
+		//
 		void drawImage(Canvas c) {
 			c.save();
 			c.translate(mCenterX, mCenterY);
-			if (!STROBE) {
-				c.drawColor(backgroundColor);
-			}
-			c.translate(0, 250);
+			// if (!STROBE) {
+			c.drawColor(backgroundColor);
+			// }
+			c.translate(0, (c.getHeight() / 2) - frame0.getHeight() / 2);
 			if (frameArray.size() > 0) {
-			c.drawBitmap(frameArray.get(indexnumber), 0, 0, mPaint);
+				c.drawBitmap(frameArray.get(indexnumber), 0, 0, mPaint);
 			}
 			c.restore();
 			if (indexnumber < frameArray.size() - 1) {
