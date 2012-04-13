@@ -36,7 +36,7 @@
         <item>fast</item>
     </string-array>
 
-    <string name="app_name">Nyan Cat Live</string>
+    <string name="app_name">Nyan Cat Live Plus</string>
     <string name="about">About:</string>
     <string name="app_description">Watch Nyan Cat race across your screen, featuring the most famous and unique Nyan Cat themes!</string>
     <string name="settings_activity">Nyan Cat Live settings</string>
