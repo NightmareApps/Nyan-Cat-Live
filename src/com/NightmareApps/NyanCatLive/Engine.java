@@ -59,7 +59,7 @@ public class Engine extends WallpaperService {
 
 		private boolean mVisible;
 		private int indexnumber = 0;
-		public Bitmap current, sparkle;
+		public Bitmap current, stars;
 		private int backgroundColor;
 		public static final int FAST = 25;
 		public static final int SLOW = 300;
@@ -115,138 +115,194 @@ public class Engine extends WallpaperService {
 
 			current = Bitmap.createScaledBitmap(current, minWidth, minHeight,
 					true);
-			sparkle = BitmapFactory.decodeResource(getResources(), R.drawable.sparkles);
-
 			loadFrames();
 
 		}
 
 		public void loadFrames() {
-//			if (THEME.contains("nyan_cat")) {
-//				if (indexnumber == 0) {
-//					current = BitmapFactory.decodeResource(getResources(),
-//							R.drawable.nyancat1);
-//					current = Bitmap.createScaledBitmap(current, minWidth,
-//							minHeight, true);
-//				} else if (indexnumber == 1) {
-//					current = BitmapFactory.decodeResource(getResources(),
-//							R.drawable.nyancat2);
-//					current = Bitmap.createScaledBitmap(current, minWidth,
-//							minHeight, true);
-//				} else if (indexnumber == 2) {
-//					current = BitmapFactory.decodeResource(getResources(),
-//							R.drawable.nyancat3);
-//					current = Bitmap.createScaledBitmap(current, minWidth,
-//							minHeight, true);
-//				} else if (indexnumber == 3) {
-//					current = BitmapFactory.decodeResource(getResources(),
-//							R.drawable.nyancat4);
-//					current = Bitmap.createScaledBitmap(current, minWidth,
-//							minHeight, true);
-//				} else if (indexnumber == 4) {
-//					current = BitmapFactory.decodeResource(getResources(),
-//							R.drawable.nyancat5);
-//					current = Bitmap.createScaledBitmap(current, minWidth,
-//							minHeight, true);
-//				} else if (indexnumber == 5) {
-//					current = BitmapFactory.decodeResource(getResources(),
-//							R.drawable.nyancat6);
-//					current = Bitmap.createScaledBitmap(current, minWidth,
-//							minHeight, true);
-//				} else if (indexnumber == 6) {
-//					current = BitmapFactory.decodeResource(getResources(),
-//							R.drawable.nyancat7);
-//					current = Bitmap.createScaledBitmap(current, minWidth,
-//							minHeight, true);
-//				} else if (indexnumber == 7) {
-//					current = BitmapFactory.decodeResource(getResources(),
-//							R.drawable.nyancat8);
-//					current = Bitmap.createScaledBitmap(current, minWidth,
-//							minHeight, true);
-//				} else if (indexnumber == 8) {
-//					current = BitmapFactory.decodeResource(getResources(),
-//							R.drawable.nyancat9);
-//					current = Bitmap.createScaledBitmap(current, minWidth,
-//							minHeight, true);
-//				} else if (indexnumber == 9) {
-//					current = BitmapFactory.decodeResource(getResources(),
-//							R.drawable.nyancat10);
-//					current = Bitmap.createScaledBitmap(current, minWidth,
-//							minHeight, true);
-//				} else if (indexnumber == 10) {
-//					current = BitmapFactory.decodeResource(getResources(),
-//							R.drawable.nyancat11);
-//					current = Bitmap.createScaledBitmap(current, minWidth,
-//							minHeight, true);
-//				} else if (indexnumber == 11) {
-//					current = BitmapFactory.decodeResource(getResources(),
-//							R.drawable.nyancat0);
-//					current = Bitmap.createScaledBitmap(current, minWidth,
-//							minHeight, true);
-//				}
-//			} else if (THEME.contains("nyan_skrat")) {
-//				if (indexnumber == 0) {
-//					current = BitmapFactory.decodeResource(getResources(),
-//							R.drawable.nyanskrat1);
-//					current = Bitmap.createScaledBitmap(current, minWidth,
-//							minHeight, true);
-//				} else if (indexnumber == 1) {
-//					current = BitmapFactory.decodeResource(getResources(),
-//							R.drawable.nyanskrat2);
-//					current = Bitmap.createScaledBitmap(current, minWidth,
-//							minHeight, true);
-//				} else if (indexnumber == 2) {
-//					current = BitmapFactory.decodeResource(getResources(),
-//							R.drawable.nyanskrat3);
-//					current = Bitmap.createScaledBitmap(current, minWidth,
-//							minHeight, true);
-//				} else if (indexnumber == 3) {
-//					current = BitmapFactory.decodeResource(getResources(),
-//							R.drawable.nyanskrat4);
-//					current = Bitmap.createScaledBitmap(current, minWidth,
-//							minHeight, true);
-//				} else if (indexnumber == 4) {
-//					current = BitmapFactory.decodeResource(getResources(),
-//							R.drawable.nyanskrat5);
-//					current = Bitmap.createScaledBitmap(current, minWidth,
-//							minHeight, true);
-//				} else if (indexnumber == 5) {
-//					current = BitmapFactory.decodeResource(getResources(),
-//							R.drawable.nyanskrat6);
-//					current = Bitmap.createScaledBitmap(current, minWidth,
-//							minHeight, true);
-//				} else if (indexnumber == 6) {
-//					current = BitmapFactory.decodeResource(getResources(),
-//							R.drawable.nyanskrat7);
-//					current = Bitmap.createScaledBitmap(current, minWidth,
-//							minHeight, true);
-//				} else if (indexnumber == 7) {
-//					current = BitmapFactory.decodeResource(getResources(),
-//							R.drawable.nyanskrat8);
-//					current = Bitmap.createScaledBitmap(current, minWidth,
-//							minHeight, true);
-//				} else if (indexnumber == 8) {
-//					current = BitmapFactory.decodeResource(getResources(),
-//							R.drawable.nyanskrat9);
-//					current = Bitmap.createScaledBitmap(current, minWidth,
-//							minHeight, true);
-//				} else if (indexnumber == 9) {
-//					current = BitmapFactory.decodeResource(getResources(),
-//							R.drawable.nyanskrat10);
-//					current = Bitmap.createScaledBitmap(current, minWidth,
-//							minHeight, true);
-//				} else if (indexnumber == 10) {
-//					current = BitmapFactory.decodeResource(getResources(),
-//							R.drawable.nyanskrat11);
-//					current = Bitmap.createScaledBitmap(current, minWidth,
-//							minHeight, true);
-//				} else if (indexnumber == 11) {
-//					current = BitmapFactory.decodeResource(getResources(),
-//							R.drawable.nyanskrat0);
-//					current = Bitmap.createScaledBitmap(current, minWidth,
-//							minHeight, true);
-//				}
-//			}
+			if (THEME.contains("nyan_cat")) {
+				if (indexnumber == 0) {
+					current = BitmapFactory.decodeResource(getResources(),
+							R.drawable.nyancat1);
+					current = Bitmap.createScaledBitmap(current, minWidth,
+							minHeight, true);
+					stars = BitmapFactory.decodeResource(getResources(),
+							R.drawable.stars1);
+				} else if (indexnumber == 1) {
+					current = BitmapFactory.decodeResource(getResources(),
+							R.drawable.nyancat2);
+					current = Bitmap.createScaledBitmap(current, minWidth,
+							minHeight, true);
+					stars = BitmapFactory.decodeResource(getResources(),
+							R.drawable.stars2);
+				} else if (indexnumber == 2) {
+					current = BitmapFactory.decodeResource(getResources(),
+							R.drawable.nyancat3);
+					current = Bitmap.createScaledBitmap(current, minWidth,
+							minHeight, true);
+					stars = BitmapFactory.decodeResource(getResources(),
+							R.drawable.stars3);
+
+				} else if (indexnumber == 3) {
+					current = BitmapFactory.decodeResource(getResources(),
+							R.drawable.nyancat4);
+					current = Bitmap.createScaledBitmap(current, minWidth,
+							minHeight, true);
+					stars = BitmapFactory.decodeResource(getResources(),
+							R.drawable.stars4);
+
+				} else if (indexnumber == 4) {
+					current = BitmapFactory.decodeResource(getResources(),
+							R.drawable.nyancat5);
+					current = Bitmap.createScaledBitmap(current, minWidth,
+							minHeight, true);
+					stars = BitmapFactory.decodeResource(getResources(),
+							R.drawable.stars5);
+
+				} else if (indexnumber == 5) {
+					current = BitmapFactory.decodeResource(getResources(),
+							R.drawable.nyancat6);
+					current = Bitmap.createScaledBitmap(current, minWidth,
+							minHeight, true);
+					stars = BitmapFactory.decodeResource(getResources(),
+							R.drawable.stars6);
+
+				} else if (indexnumber == 6) {
+					current = BitmapFactory.decodeResource(getResources(),
+							R.drawable.nyancat7);
+					current = Bitmap.createScaledBitmap(current, minWidth,
+							minHeight, true);
+					stars = BitmapFactory.decodeResource(getResources(),
+							R.drawable.stars7);
+
+				} else if (indexnumber == 7) {
+					current = BitmapFactory.decodeResource(getResources(),
+							R.drawable.nyancat8);
+					current = Bitmap.createScaledBitmap(current, minWidth,
+							minHeight, true);
+					stars = BitmapFactory.decodeResource(getResources(),
+							R.drawable.stars8);
+
+				} else if (indexnumber == 8) {
+					current = BitmapFactory.decodeResource(getResources(),
+							R.drawable.nyancat9);
+					current = Bitmap.createScaledBitmap(current, minWidth,
+							minHeight, true);
+					stars = BitmapFactory.decodeResource(getResources(),
+							R.drawable.stars9);
+
+				} else if (indexnumber == 9) {
+					current = BitmapFactory.decodeResource(getResources(),
+							R.drawable.nyancat10);
+					current = Bitmap.createScaledBitmap(current, minWidth,
+							minHeight, true);
+					stars = BitmapFactory.decodeResource(getResources(),
+							R.drawable.stars10);
+
+				} else if (indexnumber == 10) {
+					current = BitmapFactory.decodeResource(getResources(),
+							R.drawable.nyancat11);
+					current = Bitmap.createScaledBitmap(current, minWidth,
+							minHeight, true);
+					stars = BitmapFactory.decodeResource(getResources(),
+							R.drawable.stars11);
+
+				} else if (indexnumber == 11) {
+					current = BitmapFactory.decodeResource(getResources(),
+							R.drawable.nyancat0);
+					current = Bitmap.createScaledBitmap(current, minWidth,
+							minHeight, true);
+					stars = BitmapFactory.decodeResource(getResources(),
+							R.drawable.stars0);
+
+				}
+			} else if (THEME.contains("nyan_skrat")) {
+				if (indexnumber == 0) {
+					current = BitmapFactory.decodeResource(getResources(),
+							R.drawable.nyanskrat1);
+					current = Bitmap.createScaledBitmap(current, minWidth,
+							minHeight, true);
+					stars = BitmapFactory.decodeResource(getResources(),
+							R.drawable.stars1);
+				} else if (indexnumber == 1) {
+					current = BitmapFactory.decodeResource(getResources(),
+							R.drawable.nyanskrat2);
+					current = Bitmap.createScaledBitmap(current, minWidth,
+							minHeight, true);
+					stars = BitmapFactory.decodeResource(getResources(),
+							R.drawable.stars2);
+				} else if (indexnumber == 2) {
+					current = BitmapFactory.decodeResource(getResources(),
+							R.drawable.nyanskrat3);
+					current = Bitmap.createScaledBitmap(current, minWidth,
+							minHeight, true);
+					stars = BitmapFactory.decodeResource(getResources(),
+							R.drawable.stars3);
+				} else if (indexnumber == 3) {
+					current = BitmapFactory.decodeResource(getResources(),
+							R.drawable.nyanskrat4);
+					current = Bitmap.createScaledBitmap(current, minWidth,
+							minHeight, true);
+					stars = BitmapFactory.decodeResource(getResources(),
+							R.drawable.stars4);
+				} else if (indexnumber == 4) {
+					current = BitmapFactory.decodeResource(getResources(),
+							R.drawable.nyanskrat5);
+					current = Bitmap.createScaledBitmap(current, minWidth,
+							minHeight, true);
+					stars = BitmapFactory.decodeResource(getResources(),
+							R.drawable.stars5);
+				} else if (indexnumber == 5) {
+					current = BitmapFactory.decodeResource(getResources(),
+							R.drawable.nyanskrat6);
+					current = Bitmap.createScaledBitmap(current, minWidth,
+							minHeight, true);
+					stars = BitmapFactory.decodeResource(getResources(),
+							R.drawable.stars6);
+				} else if (indexnumber == 6) {
+					current = BitmapFactory.decodeResource(getResources(),
+							R.drawable.nyanskrat7);
+					current = Bitmap.createScaledBitmap(current, minWidth,
+							minHeight, true);
+					stars = BitmapFactory.decodeResource(getResources(),
+							R.drawable.stars7);
+				} else if (indexnumber == 7) {
+					current = BitmapFactory.decodeResource(getResources(),
+							R.drawable.nyanskrat8);
+					current = Bitmap.createScaledBitmap(current, minWidth,
+							minHeight, true);
+					stars = BitmapFactory.decodeResource(getResources(),
+							R.drawable.stars8);
+				} else if (indexnumber == 8) {
+					current = BitmapFactory.decodeResource(getResources(),
+							R.drawable.nyanskrat9);
+					current = Bitmap.createScaledBitmap(current, minWidth,
+							minHeight, true);
+					stars = BitmapFactory.decodeResource(getResources(),
+							R.drawable.stars9);
+				} else if (indexnumber == 9) {
+					current = BitmapFactory.decodeResource(getResources(),
+							R.drawable.nyanskrat10);
+					current = Bitmap.createScaledBitmap(current, minWidth,
+							minHeight, true);
+					stars = BitmapFactory.decodeResource(getResources(),
+							R.drawable.stars10);
+				} else if (indexnumber == 10) {
+					current = BitmapFactory.decodeResource(getResources(),
+							R.drawable.nyanskrat11);
+					current = Bitmap.createScaledBitmap(current, minWidth,
+							minHeight, true);
+					stars = BitmapFactory.decodeResource(getResources(),
+							R.drawable.stars11);
+				} else if (indexnumber == 11) {
+					current = BitmapFactory.decodeResource(getResources(),
+							R.drawable.nyanskrat0);
+					current = Bitmap.createScaledBitmap(current, minWidth,
+							minHeight, true);
+					stars = BitmapFactory.decodeResource(getResources(),
+							R.drawable.stars0);
+				}
+			}
 		}
 
 		@Override
@@ -376,7 +432,7 @@ public class Engine extends WallpaperService {
 			c.drawBitmap(current, 0, 0, mPaint);
 			c.restore();
 			loadFrames();
-			c.drawBitmap(sparkle, 0, 0, mPaint);
+			c.drawBitmap(stars, 0, 0, mPaint);
 			if (indexnumber < 11) {
 				indexnumber++;
 			} else {
