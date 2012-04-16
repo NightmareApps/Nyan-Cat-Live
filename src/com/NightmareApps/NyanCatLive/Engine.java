@@ -114,7 +114,7 @@ public class Engine extends WallpaperService {
 			minHeight = (int) (ratioHeight * current.getHeight());
 
 			current = Bitmap.createScaledBitmap(current, minWidth, minHeight,
-					true);
+					false);
 			loadFrames();
 
 		}
@@ -125,21 +125,21 @@ public class Engine extends WallpaperService {
 					current = BitmapFactory.decodeResource(getResources(),
 							R.drawable.nyancat1);
 					current = Bitmap.createScaledBitmap(current, minWidth,
-							minHeight, true);
+							minHeight, false);
 					stars = BitmapFactory.decodeResource(getResources(),
 							R.drawable.stars1);
 				} else if (indexnumber == 1) {
 					current = BitmapFactory.decodeResource(getResources(),
 							R.drawable.nyancat2);
 					current = Bitmap.createScaledBitmap(current, minWidth,
-							minHeight, true);
+							minHeight, false);
 					stars = BitmapFactory.decodeResource(getResources(),
 							R.drawable.stars2);
 				} else if (indexnumber == 2) {
 					current = BitmapFactory.decodeResource(getResources(),
 							R.drawable.nyancat3);
 					current = Bitmap.createScaledBitmap(current, minWidth,
-							minHeight, true);
+							minHeight, false);
 					stars = BitmapFactory.decodeResource(getResources(),
 							R.drawable.stars3);
 
@@ -147,7 +147,7 @@ public class Engine extends WallpaperService {
 					current = BitmapFactory.decodeResource(getResources(),
 							R.drawable.nyancat4);
 					current = Bitmap.createScaledBitmap(current, minWidth,
-							minHeight, true);
+							minHeight, false);
 					stars = BitmapFactory.decodeResource(getResources(),
 							R.drawable.stars4);
 
@@ -155,7 +155,7 @@ public class Engine extends WallpaperService {
 					current = BitmapFactory.decodeResource(getResources(),
 							R.drawable.nyancat5);
 					current = Bitmap.createScaledBitmap(current, minWidth,
-							minHeight, true);
+							minHeight, false);
 					stars = BitmapFactory.decodeResource(getResources(),
 							R.drawable.stars5);
 
@@ -163,7 +163,7 @@ public class Engine extends WallpaperService {
 					current = BitmapFactory.decodeResource(getResources(),
 							R.drawable.nyancat6);
 					current = Bitmap.createScaledBitmap(current, minWidth,
-							minHeight, true);
+							minHeight, false);
 					stars = BitmapFactory.decodeResource(getResources(),
 							R.drawable.stars6);
 
@@ -171,7 +171,7 @@ public class Engine extends WallpaperService {
 					current = BitmapFactory.decodeResource(getResources(),
 							R.drawable.nyancat7);
 					current = Bitmap.createScaledBitmap(current, minWidth,
-							minHeight, true);
+							minHeight, false);
 					stars = BitmapFactory.decodeResource(getResources(),
 							R.drawable.stars7);
 
@@ -179,7 +179,7 @@ public class Engine extends WallpaperService {
 					current = BitmapFactory.decodeResource(getResources(),
 							R.drawable.nyancat8);
 					current = Bitmap.createScaledBitmap(current, minWidth,
-							minHeight, true);
+							minHeight, false);
 					stars = BitmapFactory.decodeResource(getResources(),
 							R.drawable.stars8);
 
@@ -187,7 +187,7 @@ public class Engine extends WallpaperService {
 					current = BitmapFactory.decodeResource(getResources(),
 							R.drawable.nyancat9);
 					current = Bitmap.createScaledBitmap(current, minWidth,
-							minHeight, true);
+							minHeight, false);
 					stars = BitmapFactory.decodeResource(getResources(),
 							R.drawable.stars9);
 
@@ -195,7 +195,7 @@ public class Engine extends WallpaperService {
 					current = BitmapFactory.decodeResource(getResources(),
 							R.drawable.nyancat10);
 					current = Bitmap.createScaledBitmap(current, minWidth,
-							minHeight, true);
+							minHeight, false);
 					stars = BitmapFactory.decodeResource(getResources(),
 							R.drawable.stars10);
 
@@ -203,7 +203,7 @@ public class Engine extends WallpaperService {
 					current = BitmapFactory.decodeResource(getResources(),
 							R.drawable.nyancat11);
 					current = Bitmap.createScaledBitmap(current, minWidth,
-							minHeight, true);
+							minHeight, false);
 					stars = BitmapFactory.decodeResource(getResources(),
 							R.drawable.stars11);
 
@@ -211,7 +211,7 @@ public class Engine extends WallpaperService {
 					current = BitmapFactory.decodeResource(getResources(),
 							R.drawable.nyancat0);
 					current = Bitmap.createScaledBitmap(current, minWidth,
-							minHeight, true);
+							minHeight, false);
 					stars = BitmapFactory.decodeResource(getResources(),
 							R.drawable.stars0);
 
@@ -429,15 +429,15 @@ public class Engine extends WallpaperService {
 				c.drawColor(backgroundColor);
 			}
 			c.translate(0, (c.getHeight() / 2) - current.getHeight() / 2);
-			c.drawBitmap(current, 0, 0, mPaint);
+			c.drawBitmap(current, 0, 0, null);
 			c.restore();
-			loadFrames();
-			c.drawBitmap(stars, 0, 0, mPaint);
+			c.drawBitmap(stars, 0, 0, null);
 			if (indexnumber < 11) {
 				indexnumber++;
 			} else {
 				indexnumber = 0;
 			}
+			loadFrames();
 			System.out.println(indexnumber);
 		}
 
